@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Puzzle</title>
+    <link
+      rel="shortcut icon"
+      href="https://www.svgrepo.com/show/398147/puzzle-piece.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container-center">
+      <div class="container">
+        <input type="file" name="photoInput" id="photoInput" accept="image/*" />
+        <div class="preview-section">
+          <div class="photo-preview"></div>
+          <div class="puzzle">
+            <div class="slice slice1">
+              <img src="" alt="Slice 1" />
+            </div>
+            <div class="slice slice2">
+              <img src="" alt="Slice 2" />
+            </div>
+            <div class="slice slice3">
+              <img src="" alt="Slice 3" />
+            </div>
+            <div class="slice slice4">
+              <img src="" alt="Slice 4" />
+            </div>
+            <div class="slice slice5">
+              <img src="" alt="Slice 5" />
+            </div>
+            <div class="slice slice6">
+              <img src="" alt="Slice 6" />
+            </div>
+            <div class="slice slice7">
+              <img src="" alt="Slice 7" />
+            </div>
+            <div class="slice slice8">
+              <img src="" alt="Slice 8" />
+            </div>
+            <div class="slice slice9">
+              <img src="" alt="Slice 9" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const preview = document.querySelector(".photo-preview");
+      const photoInput = document.querySelector("#photoInput");
+      const slicesImg = document.querySelectorAll(".slice img");
+
+      photoInput.addEventListener("change", () => {
+        const file = photoInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const img = document.createElement("img");
+          img.src = reader.result;
+          img.classList.add("image");
+          preview.innerHTML = "";
+          preview.appendChild(img);
+
+          //add src to each img node
+          slicesImg.forEach((element) => {
+            element.src = reader.result;
+          });
+        };
+
+        reader.readAsDataURL(file);
+      });
+    </script>
+  </body>
+</html>
