@@ -16,6 +16,7 @@ photoInput.addEventListener("change", () => {
     //add src to each img node
     slicesImg.forEach((element) => {
       element.src = reader.result;
+      element.style.visibility = "visible";
     });
   };
 

@@ -6,19 +6,24 @@
 
 .container-center {
   padding: 50px;
+  height: 100vh;
+  /* background-color: rgb(79, 99, 160); */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .container {
-  border: 2px double black;
-  width: 900px;
-  height: 500px;
-  padding: 30px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: white;
+  width: 700px;
+  height: 400px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  box-sizing: content-box;
 }
 
 .input-btn {
@@ -71,11 +76,12 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 5px;
+  gap: 1px;
 }
 
 .slice {
-  border: 1px solid green;
+  border: 2px solid green;
+  border-radius: 3px;
   position: relative;
   overflow: hidden;
 }
@@ -85,6 +91,7 @@
   position: absolute;
   width: 305%;
   height: 305%;
+  cursor: grab;
 }
 
 .slice1 img {
