@@ -1,7 +1,11 @@
-const preview = document.querySelector(".photo-preview");
 const photoInput = document.querySelector("#photoInput");
-const slices = document.querySelectorAll(".slice");
-const slicesImg = document.querySelectorAll(".slice img");
+const preview = document.querySelector(".photo-preview");
+const puzzle = document.querySelector(".puzzle");
+var slices = document.querySelectorAll(".slice");
+var slicesImg = document.querySelectorAll(".slice img");
+
+const initialSlices = slices;
+const initialslicesImg = slicesImg;
 
 const drag = (ev) => {
   ev.dataTransfer.setData("text", ev.target.id);
@@ -11,20 +15,49 @@ const allowDrop = (ev) => {
   ev.preventDefault();
 };
 
+//adding drag attributes/properties to each slices
+const updateSliceNode = () => {
+  slices = document.querySelectorAll(".slice");
+  slices.forEach((element) => {
+    element.draggable = true;
+    element.ondragstart = drag;
+    element.ondrop = drop;
+    element.ondragover = allowDrop;
+    element.style.cursor = "grab";
+  });
+};
+
+//initalize the puzzle contianer for new-image upload
+const initializePuzzleContainer = (imgPath) => {
+  puzzle.innerHTML = "";
+  initialSlices.forEach((element) => {
+    puzzle.append(element);
+  });
+
+  //add src to each img node
+  initialslicesImg.forEach((element) => {
+    element.style.visibility = "visible";
+    element.src = imgPath;
+  });
+};
+
 const drop = (ev) => {
   ev.preventDefault();
   let data = ev.dataTransfer.getData("text");
   const dataElement = document.getElementById(data);
-  //   ev.target.appendChild(dataElement);
+  const targetElement = ev.target;
+
+  const targetCloneNode = targetElement.cloneNode(true);
+  const dataCloneNode = dataElement.cloneNode(true);
+  puzzle.replaceChild(dataCloneNode, targetElement);
+  //checks if the target and drag node is same
+  if (!dataCloneNode.isEqualNode(targetElement))
+    puzzle.replaceChild(targetCloneNode, dataElement);
+
+  updateSliceNode(); //cloned nodes needs updated slices
 };
 
-slices.forEach((element) => {
-  element.ondrop = drop;
-  element.ondragover = allowDrop;
-});
-
-// handling the image image upoad
-photoInput.addEventListener("change", () => {
+const imageUploadHandler = () => {
   const file = photoInput.files[0];
   const reader = new FileReader();
 
@@ -35,13 +68,13 @@ photoInput.addEventListener("change", () => {
     preview.innerHTML = "";
     preview.appendChild(img);
 
-    //add src to each img node
-    slicesImg.forEach((element) => {
-      element.src = reader.result;
-      element.draggable = true;
-      element.ondragstart = drag;
-    });
+    //initialize the puzzle container
+    initializePuzzleContainer(reader.result);
   };
 
+  updateSliceNode();
   reader.readAsDataURL(file);
-});
+};
+
+// handling  on image-upoad
+photoInput.addEventListener("change", imageUploadHandler);

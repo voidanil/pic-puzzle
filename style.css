@@ -24,6 +24,7 @@
   flex-direction: column;
   gap: 10px;
   box-sizing: content-box;
+  z-index: 1000;
 }
 
 .input-btn {
@@ -64,6 +65,7 @@
   flex: 1;
   min-width: 300px;
   padding: 5px;
+  user-select: none;
 }
 
 .image {
@@ -91,52 +93,35 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  cursor: grab;
   transform: scale(3);
+  visibility: hidden;
+  z-index: -10;
 }
 
 .slice1 img {
-  /* clip-path: polygon(0% 0%, 0% 33%, 33% 33%, 33% 0%, 0% 0%); */
   translate: 100% 100%;
 }
-
 .slice2 img {
-  /* clip-path: polygon(33% 0%, 33% 33%, 66% 33%, 66% 0%, 33% 0%);
-  transform: translate(-33%); */
   translate: 0% 100%;
 }
 .slice3 img {
-  /* clip-path: polygon(66% 0%, 66% 33%, 100% 33%, 100% 0%, 66% 0%);
-  transform: translate(-66%); */
   translate: -100% 100%;
 }
 .slice4 img {
-  /* clip-path: polygon(0% 33%, 0% 66%, 33% 66%, 33% 33%, 0% 33%);
-  transform: translate(0%, -33%); */
   translate: 100% 0%;
 }
 .slice5 img {
-  /* clip-path: polygon(33% 33%, 33% 66%, 66% 66%, 66% 33%, 33% 33%);
-  transform: translate(-33%, -33%); */
   translate: 0% 0%;
 }
 .slice6 img {
-  /* clip-path: polygon(66% 33%, 66% 66%, 100% 66%, 100% 33%, 66% 33%);
-  transform: translate(-66%, -33%); */
   translate: -100% 0%;
 }
 .slice7 img {
-  /* clip-path: polygon(0% 66%, 0% 100%, 33% 100%, 33% 66%, 0% 66%);
-  transform: translate(0%, -66%); */
   translate: 100% -100%;
 }
 .slice8 img {
-  /* clip-path: polygon(33% 66%, 33% 100%, 66% 100%, 66% 66%, 33% 66%);
-  transform: translate(-33%, -66%); */
   translate: 0% -100%;
 }
 .slice9 img {
-  /* clip-path: polygon(66% 66%, 66% 100%, 100% 100%, 100% 66%, 66% 66%);
-  transform: translate(-66%, -66%); */
   translate: -100% -100%;
 }
