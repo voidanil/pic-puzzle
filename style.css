@@ -4,22 +4,25 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: gray;
+}
+
 .container-center {
   padding: 50px;
   height: 100vh;
-  /* background-color: rgb(79, 99, 160); */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .container {
-  border: 2px solid black;
+  border: 3px solid black;
   border-radius: 10px;
   background-color: white;
   width: 700px;
-  height: 400px;
-  padding: 20px;
+  min-height: 400px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -63,9 +66,8 @@
 .puzzle {
   border: 2px dotted blueviolet;
   flex: 1;
-  min-width: 300px;
-  padding: 5px;
   user-select: none;
+  padding: 5px;
 }
 
 .photo-preview {
@@ -73,6 +75,8 @@
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
+  height: 330px;
+  width: 330px;
 }
 
 .image {
@@ -93,6 +97,8 @@
   border-radius: 3px;
   position: relative;
   overflow: hidden;
+  height: 100%;
+  width: 100%;
 }
 
 .slice img {
@@ -131,4 +137,16 @@
 }
 .slice9 img {
   translate: -100% -100%;
+}
+
+.suffle-btn {
+  float: right;
+  border-radius: 5px;
+  box-sizing: content-box;
+  background-color: greenyellow;
+  padding: 3px 28px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
 }

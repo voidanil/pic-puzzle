@@ -3,6 +3,8 @@ const preview = document.querySelector(".photo-preview");
 const puzzle = document.querySelector(".puzzle");
 var slices = document.querySelectorAll(".slice");
 var slicesImg = document.querySelectorAll(".slice img");
+const suffleBtn = document.querySelector(".suffle-btn");
+var imgPathStr = "";
 
 const initialSlices = slices;
 const initialslicesImg = slicesImg;
@@ -13,6 +15,15 @@ const drag = (ev) => {
 
 const allowDrop = (ev) => {
   ev.preventDefault();
+};
+
+const suffleSlices = () => {
+  const array = Array.from(initialSlices); // Convert to array for easier manipulation
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 };
 
 //adding drag attributes/properties to each slices
@@ -30,7 +41,7 @@ const updateSliceNode = () => {
 //initalize the puzzle contianer for new-image upload
 const initializePuzzleContainer = (imgPath) => {
   puzzle.innerHTML = "";
-  initialSlices.forEach((element) => {
+  suffleSlices().forEach((element) => {
     puzzle.append(element);
   });
 
@@ -68,6 +79,7 @@ const imageUploadHandler = () => {
     preview.innerHTML = "";
     preview.appendChild(img);
 
+    imgPathStr = reader.result;
     //initialize the puzzle container
     initializePuzzleContainer(reader.result);
   };
@@ -78,3 +90,10 @@ const imageUploadHandler = () => {
 
 // handling  on image-upoad
 photoInput.addEventListener("change", imageUploadHandler);
+
+suffleBtn.onclick = () => {
+  if (imgPathStr !== "") {
+    initializePuzzleContainer(imgPathStr);
+  }
+  console.log("clicked");
+};
