@@ -8,6 +8,7 @@ var imgPathStr = "";
 
 const initialSlices = slices;
 const initialslicesImg = slicesImg;
+const initialImageIdList = Array.from(initialslicesImg).map((img) => img.id);
 
 const drag = (ev) => {
   ev.dataTransfer.setData("text", ev.target.id);
@@ -24,6 +25,23 @@ const suffleSlices = () => {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+};
+
+const ckeckIsSoved = () => {
+  const imageIdList = Array.from(document.querySelectorAll(".slice img")).map(
+    (img) => img.id
+  );
+
+  if (imageIdList.toString() === initialImageIdList.toString())
+    confetti({
+      particleCount: 150,
+      spread: 200,
+      gravity: 0.8,
+      scalar: 1.2,
+      origin: { y: 0.7 },
+      shape: "square",
+      zIndex: 2000,
+    });
 };
 
 //adding drag attributes/properties to each slices
@@ -66,6 +84,7 @@ const drop = (ev) => {
     puzzle.replaceChild(targetCloneNode, dataElement);
 
   updateSliceNode(); //cloned nodes needs updated slices
+  ckeckIsSoved();
 };
 
 const imageUploadHandler = () => {
