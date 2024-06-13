@@ -101,6 +101,7 @@ body {
   overflow: hidden;
   height: 100%;
   width: 100%;
+  animation: scaleTransition 0.2s 1;
 }
 
 .slice img {
@@ -203,4 +204,13 @@ body {
 
 .dragging {
   transform: scale(1);
+}
+
+@keyframes scaleTransition {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
 }
