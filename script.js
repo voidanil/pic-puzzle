@@ -39,8 +39,8 @@ const ckeckIsSoved = () => {
         spread: 200,
         gravity: 0.8,
         scalar: 1,
-        startVelocity: 60,
-        origin: { y: 0.7 },
+        startVelocity: 55,
+        origin: { y: 0.6 },
         shapes: ["circle", "square"],
         zIndex: 2000,
       });
@@ -94,10 +94,12 @@ const drop = (ev) => {
 
   const targetCloneNode = targetElement.cloneNode(true);
   const dataCloneNode = dataElement.cloneNode(true);
-  puzzle.replaceChild(dataCloneNode, targetElement);
+
   //checks if the target and drag node is same
-  if (!dataCloneNode.isEqualNode(targetElement))
+  if (!dataCloneNode.isEqualNode(targetElement)) {
     puzzle.replaceChild(targetCloneNode, dataElement);
+    puzzle.replaceChild(dataCloneNode, targetElement);
+  }
 
   updateSliceNode(); //cloned nodes needs updated slices
   ckeckIsSoved();
