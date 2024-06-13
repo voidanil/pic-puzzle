@@ -40,28 +40,36 @@ const ckeckIsSoved = () => {
 
   if (imageIdList.toString() === initialImageIdList.toString()) {
     if (window.outerWidth < 1400) {
-      confetti({
-        particleCount: 150,
-        spread: 200,
-        gravity: 0.8,
-        scalar: 1,
-        startVelocity: 55,
-        origin: { y: 0.6 },
-        shapes: ["circle", "square"],
-        zIndex: 2000,
-      });
+      setTimeout(
+        () =>
+          confetti({
+            particleCount: 150,
+            spread: 200,
+            gravity: 0.8,
+            scalar: 1,
+            startVelocity: 55,
+            origin: { y: 0.6 },
+            shapes: ["circle", "square"],
+            zIndex: 2000,
+          }),
+        300
+      );
     } else {
-      confetti({
-        particleCount: 200,
-        ticks: 170,
-        spread: 170,
-        gravity: 0.8,
-        scalar: 1.5,
-        startVelocity: 80,
-        origin: { y: 0.6 },
-        shapes: ["circle", "square"],
-        zIndex: 2000,
-      });
+      setTimeout(
+        () =>
+          confetti({
+            particleCount: 200,
+            ticks: 170,
+            spread: 170,
+            gravity: 0.8,
+            scalar: 1.5,
+            startVelocity: 80,
+            origin: { y: 0.6 },
+            shapes: ["circle", "square"],
+            zIndex: 2000,
+          }),
+        300
+      );
     }
   }
 };
