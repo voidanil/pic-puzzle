@@ -39,8 +39,8 @@ const ckeckIsSoved = () => {
         spread: 200,
         gravity: 0.8,
         scalar: 1,
-        startVelocity: 60,
-        origin: { y: 0.7 },
+        startVelocity: 55,
+        origin: { y: 0.6 },
         shapes: ["circle", "square"],
         zIndex: 2000,
       });
