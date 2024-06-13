@@ -11,11 +11,17 @@ const initialslicesImg = slicesImg;
 const initialImageIdList = Array.from(initialslicesImg).map((img) => img.id);
 
 const drag = (ev) => {
+  removeDraggingClass();
+  ev.target.classList.add("dragging");
   ev.dataTransfer.setData("text", ev.target.id);
 };
 
 const allowDrop = (ev) => {
   ev.preventDefault();
+};
+
+const removeDraggingClass = () => {
+  document.querySelector(".dragging")?.classList.remove("dragging");
 };
 
 const suffleSlices = () => {
@@ -92,11 +98,19 @@ const drop = (ev) => {
   const dataElement = document.getElementById(data);
   const targetElement = ev.target;
 
+  targetElement.classList.remove("dragging");
+  if (dataElement == null) return null;
+  dataElement.classList.remove("dragging");
+
   const targetCloneNode = targetElement.cloneNode(true);
   const dataCloneNode = dataElement.cloneNode(true);
 
   //checks if the target and drag node is same
-  if (!dataCloneNode.isEqualNode(targetElement)) {
+  if (
+    dataCloneNode.id !== targetCloneNode.id &&
+    targetElement.tagName !== "IMG" &&
+    dataElement.tagName !== "IMG"
+  ) {
     puzzle.replaceChild(targetCloneNode, dataElement);
     puzzle.replaceChild(dataCloneNode, targetElement);
   }
@@ -132,4 +146,8 @@ suffleBtn.onclick = () => {
   if (imgPathStr !== "") {
     initializePuzzleContainer(imgPathStr);
   }
+};
+
+document.onmouseup = () => {
+  removeDraggingClass();
 };

@@ -200,3 +200,7 @@ body {
     letter-spacing: 1.7px;
   }
 }
+
+.dragging {
+  transform: scale(1);
+}
