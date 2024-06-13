@@ -150,3 +150,49 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+
+@media (min-width: 1400px) {
+  .container {
+    width: 1000px;
+    min-height: 600px;
+    border-width: 5px;
+    padding: 30px 50px;
+  }
+
+  .photo-preview,
+  .puzzle {
+    height: 500px;
+    width: 500px;
+    border-width: 4px;
+  }
+
+  .photo-preview {
+    font-size: 2.1rem;
+  }
+
+  .puzzle {
+    gap: 2px;
+  }
+
+  .slice {
+    border-width: 3px;
+  }
+
+  .input-btn {
+    border-width: 2px;
+    padding: 5px 18px;
+    border-radius: 7px;
+    font-size: 1.5rem;
+  }
+  .input-btn img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 10px;
+  }
+
+  .suffle-btn {
+    border-radius: 7px;
+    padding: 6px 40px;
+    font-size: 1.6rem;
+  }
+}
