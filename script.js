@@ -95,5 +95,4 @@ suffleBtn.onclick = () => {
   if (imgPathStr !== "") {
     initializePuzzleContainer(imgPathStr);
   }
-  console.log("clicked");
 };
