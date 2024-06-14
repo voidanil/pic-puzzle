@@ -142,8 +142,17 @@ body {
   translate: -100% -100%;
 }
 
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info {
+  opacity: 0.7;
+}
+
 .suffle-btn {
-  float: right;
   border-radius: 5px;
   box-sizing: content-box;
   background-color: greenyellow;
@@ -160,7 +169,7 @@ body {
     width: 1000px;
     min-height: 600px;
     border-width: 5px;
-    padding: 30px 50px;
+    padding: 20px 50px;
   }
 
   .photo-preview,
@@ -192,6 +201,10 @@ body {
     width: 1.5rem;
     height: 1.5rem;
     margin-right: 10px;
+  }
+
+  .info {
+    font-size: 1.4rem;
   }
 
   .suffle-btn {

@@ -3,6 +3,7 @@ const preview = document.querySelector(".photo-preview");
 const puzzle = document.querySelector(".puzzle");
 var slices = document.querySelectorAll(".slice");
 var slicesImg = document.querySelectorAll(".slice img");
+const info = document.querySelector(".info");
 const suffleBtn = document.querySelector(".suffle-btn");
 var imgPathStr = "";
 
@@ -24,12 +25,19 @@ const removeDraggingClass = () => {
   document.querySelector(".dragging")?.classList.remove("dragging");
 };
 
+const infoHandler = (msg) => {
+  info.innerHTML = msg ?? "Tips: Arrange the pieces in correct order.";
+};
+
+infoHandler("PLAY :  Select a image and solve the puzzle."); //initialize the info
+
 const suffleSlices = () => {
   const array = Array.from(initialSlices); // Convert to array for easier manipulation
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
+  infoHandler();
   return array;
 };
 
@@ -39,10 +47,10 @@ const ckeckIsSoved = () => {
   );
 
   if (imageIdList.toString() === initialImageIdList.toString()) {
-    if (window.outerWidth < 1400) {
-      setTimeout(
-        () =>
-          confetti({
+    setTimeout(() => {
+      infoHandler("Congratulations !!!");
+      window.outerWidth < 1400
+        ? confetti({
             particleCount: 150,
             spread: 200,
             gravity: 0.8,
@@ -51,13 +59,8 @@ const ckeckIsSoved = () => {
             origin: { y: 0.6 },
             shapes: ["circle", "square"],
             zIndex: 2000,
-          }),
-        300
-      );
-    } else {
-      setTimeout(
-        () =>
-          confetti({
+          })
+        : confetti({
             particleCount: 200,
             ticks: 170,
             spread: 170,
@@ -67,10 +70,10 @@ const ckeckIsSoved = () => {
             origin: { y: 0.6 },
             shapes: ["circle", "square"],
             zIndex: 2000,
-          }),
-        300
-      );
-    }
+          });
+    }, 300);
+  } else {
+    infoHandler();
   }
 };
 
@@ -144,6 +147,7 @@ const imageUploadHandler = () => {
   };
 
   updateSliceNode();
+  infoHandler();
   reader.readAsDataURL(file);
 };
 
