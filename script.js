@@ -75,8 +75,8 @@ const ckeckIsSoved = () => {
     window.outerWidth < 1400
       ? confettiTimer({
           particleCount: 150,
-          scalar: 0.9,
-          startVelocity: 55,
+          scalar: 0.95,
+          startVelocity: 60,
         })
       : confettiTimer({
           particleCount: 170,
