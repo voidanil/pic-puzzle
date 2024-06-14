@@ -41,37 +41,48 @@ const suffleSlices = () => {
   return array;
 };
 
+const confettiTimer = (parms) => {
+  const confettiFunc = () =>
+    confetti({
+      origin: { y: 0.6 },
+      shapes: ["circle", "square"],
+      spread: 170,
+      gravity: 0.8,
+      ticks: 170,
+      zIndex: 2000,
+      ...parms,
+    });
+
+  setTimeout(() => {
+    infoHandler("Congratulations !!!");
+    confettiFunc();
+    const confetiInterval = setInterval(() => {
+      confettiFunc();
+    }, 1000);
+
+    setTimeout(() => {
+      clearInterval(confetiInterval);
+    }, 1005);
+  }, 300);
+};
+
 const ckeckIsSoved = () => {
   const imageIdList = Array.from(document.querySelectorAll(".slice img")).map(
     (img) => img.id
   );
 
   if (imageIdList.toString() === initialImageIdList.toString()) {
-    setTimeout(() => {
-      infoHandler("Congratulations !!!");
-      window.outerWidth < 1400
-        ? confetti({
-            particleCount: 150,
-            spread: 200,
-            gravity: 0.8,
-            scalar: 1,
-            startVelocity: 55,
-            origin: { y: 0.6 },
-            shapes: ["circle", "square"],
-            zIndex: 2000,
-          })
-        : confetti({
-            particleCount: 200,
-            ticks: 170,
-            spread: 170,
-            gravity: 0.8,
-            scalar: 1.5,
-            startVelocity: 80,
-            origin: { y: 0.6 },
-            shapes: ["circle", "square"],
-            zIndex: 2000,
-          });
-    }, 300);
+    window.outerWidth < 1400
+      ? confettiTimer({
+          particleCount: 150,
+          scalar: 0.9,
+          startVelocity: 55,
+        })
+      : confettiTimer({
+          particleCount: 170,
+          scalar: 1.3,
+          startVelocity: 80,
+        });
   } else {
     infoHandler();
   }
