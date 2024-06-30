@@ -9,8 +9,9 @@ body {
 }
 
 .container-center {
-  padding: 50px;
+  background-image: linear-gradient(purple, rgb(233, 58, 58));
   height: 100vh;
+  padding: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
